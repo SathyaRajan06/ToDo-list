@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My To-Do List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Splash Screen -->
+    <div class="splash-screen" id="splashScreen">
+        <div class="splash-content">
+            <div class="splash-logo">
+                <div class="splash-icon">
+                    <div class="splash-check">✓</div>
+                </div>
+                <div class="splash-glow"></div>
+                <div class="splash-particles">
+                    <span></span><span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span><span></span>
+                </div>
+            </div>
+            <h1 class="splash-title">My To-Do List</h1>
+            <p class="splash-quote" id="splashQuote">Loading inspiration...</p>
+            <div class="splash-progress">
+                <div class="splash-progress-bar" id="progressBar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div class="container">
+        <header class="header">
+            <h1>
+                <span class="icon">✓</span>
+                My To-Do List
+            </h1>
+            <p>Stay organized, stay productive</p>
+        </header>
+
+        <!-- Input Section - Add Task -->
+        <div class="input-section">
+            <div class="input-row">
+                <div class="input-wrapper full-width">
+                    <input type="text" id="taskInput" placeholder="What do you need to do?" autocomplete="off">
+                </div>
+                <button class="add-btn" id="addBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    Add
+                </button>
+            </div>
+            
+            <!-- NEW: Finish Date/Time Input -->
+            <div class="input-row deadline-row">
+                <div class="input-wrapper">
+                    <label for="finishDate">Finish by:</label>
+                    <input type="date" id="finishDate">
+                </div>
+                <div class="input-wrapper">
+                    <input type="time" id="finishTime">
+                </div>
+            </div>
+
+            <!-- Label Selection -->
+            <div class="input-row">
+                <div class="label-select-wrapper full-width">
+                    <select class="label-select" id="labelSelect">
+                        <option value="">No label</option>
+                        <option value="important">Important</option>
+                        <option value="personal">Personal</option>
+                        <option value="daily">Daily</option>
+                        <option value="target">Target</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filters Section -->
+        <div class="filters-section">
+            <div class="filter-row">
+                <div class="filter-group">
+                    <span class="filter-label">Label</span>
+                    <button class="filter-btn label-filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn label-filter-btn" data-filter="important">Important</button>
+                    <button class="filter-btn label-filter-btn" data-filter="personal">Personal</button>
+                    <button class="filter-btn label-filter-btn" data-filter="daily">Daily</button>
+                    <button class="filter-btn label-filter-btn" data-filter="target">Target</button>
+                </div>
+            </div>
+            <div class="filter-row">
+                <div class="filter-group">
+                    <span class="filter-label">Status</span>
+                    <button class="filter-btn status-filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn status-filter-btn" data-filter="pending">Pending</button>
+                    <button class="filter-btn status-filter-btn" data-filter="completed">Done</button>
+                </div>
+            </div>
+            <div class="filter-row">
+                <div class="filter-group">
+                    <span class="filter-label">Sort</span>
+                    <button class="filter-btn sort-filter-btn active" data-sort="newest">Newest</button>
+                    <button class="filter-btn sort-filter-btn" data-sort="oldest">Oldest</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tasks Header -->
+        <div class="tasks-header">
+            <h2>Your Tasks</h2>
+            <span class="task-count" id="taskCount">0 tasks</span>
+        </div>
+
+        <!-- Task List -->
+        <div class="task-list" id="taskList">
+            <div class="empty-state" id="emptyState">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+                </svg>
+                <h3>No tasks yet</h3>
+                <p>Add your first task above to get started!</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

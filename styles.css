@@ -1,0 +1,973 @@
+/* ================================================
+   My To-Do List - Enhanced Styles
+   ================================================ */
+
+/* CSS Variables - Color Theme */
+:root {
+    --primary: #3B82F6;
+    --primary-hover: #2563EB;
+    --secondary: #EFF6FF;
+    --accent: #10B981;
+    --danger: #EF4444;
+    --warning: #F59E0B;
+    --background: #F8FAFC;
+    --card-bg: #FFFFFF;
+    --text-primary: #1E293B;
+    --text-secondary: #64748B;
+    --text-muted: #94A3B8;
+    --border: #E2E8F0;
+    --shadow: 0 10px 40px rgba(59, 130, 246, 0.15);
+    --btn-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+
+    --label-important: #EF4444;
+    --label-personal: #3B82F6;
+    --label-daily: #10B981;
+    --label-target: #8B5CF6;
+}
+
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--background);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 50%);
+}
+
+/* Main Container */
+.container {
+    width: 100%;
+    max-width: 560px;
+    background: var(--card-bg);
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+    padding: 32px;
+    animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.container.visible {
+    opacity: 1;
+}
+
+/* ================================================
+   Toast Notifications
+   ================================================ */
+.toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.toast {
+    padding: 14px 20px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    animation: slideInRight 0.3s ease, fadeOut 0.3s ease 2.7s forwards;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.toast.success {
+    background: linear-gradient(135deg, var(--accent), #059669);
+}
+
+.toast.error {
+    background: linear-gradient(135deg, var(--danger), #DC2626);
+}
+
+.toast svg {
+    width: 18px;
+    height: 18px;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; visibility: hidden; }
+}
+
+/* ================================================
+   Header Styles
+   ================================================ */
+.header {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.header h1 {
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.header h1 .icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 22px;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.header p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-top: 8px;
+}
+
+/* ================================================
+   Input Section Styles
+   ================================================ */
+.input-section {
+    margin-bottom: 24px;
+}
+
+.input-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.input-wrapper.full-width {
+    flex: 1;
+}
+
+/* Input Label for deadline */
+.input-wrapper label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    display: block;
+    margin-bottom: 6px;
+}
+
+/* Input Fields */
+.input-wrapper input[type="text"],
+.input-wrapper input[type="date"],
+.input-wrapper input[type="time"] {
+    width: 100%;
+    padding: 14px 18px;
+    font-size: 15px;
+    font-family: inherit;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    outline: none;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    color: var(--text-primary);
+    background: var(--secondary);
+}
+
+.input-wrapper input[type="text"]::placeholder {
+    color: var(--text-secondary);
+}
+
+.input-wrapper input[type="text"]:focus,
+.input-wrapper input[type="date"]:focus,
+.input-wrapper input[type="time"]:focus {
+    border-color: var(--primary);
+    background: white;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+    transform: translateY(-1px);
+}
+
+/* Deadline Row */
+.deadline-row {
+    align-items: flex-end;
+}
+
+.deadline-row .input-wrapper {
+    flex: 1;
+}
+
+/* Label Select */
+.label-select-wrapper.full-width {
+    width: 100%;
+}
+
+.label-select {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 14px;
+    font-family: inherit;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    outline: none;
+    color: var(--text-primary);
+    background: white;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 44px;
+}
+
+.label-select:hover,
+.label-select:focus {
+    border-color: var(--primary);
+}
+
+/* Add Button */
+.add-btn {
+    padding: 14px 28px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: inherit;
+    background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--btn-shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.add-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.4);
+}
+
+/* Success Animation */
+.success-flash {
+    animation: successPulse 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes successPulse {
+    0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5); }
+    50% { box-shadow: 0 0 0 12px rgba(16, 185, 129, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+/* ================================================
+   Filters Section Styles
+   ================================================ */
+.filters-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding: 16px;
+    background: var(--secondary);
+    border-radius: 14px;
+}
+
+.filter-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.filter-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.filter-btn {
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: inherit;
+    background: white;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.filter-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+/* ================================================
+   Task Header Styles
+   ================================================ */
+.tasks-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding: 0 4px;
+}
+
+.tasks-header h2 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.task-count {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--primary);
+    background: var(--secondary);
+    padding: 6px 14px;
+    border-radius: 20px;
+}
+
+/* ================================================
+   Task List Styles
+   ================================================ */
+.task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 480px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.task-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.task-list::-webkit-scrollbar-track {
+    background: var(--secondary);
+    border-radius: 3px;
+}
+
+.task-list::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 3px;
+}
+
+/* ================================================
+   Task Card Styles
+   ================================================ */
+.task-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 18px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    animation-fill-mode: both;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-16px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.task-item:hover {
+    border-color: var(--primary);
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.15);
+    transform: translateY(-2px);
+}
+
+/* ================================================
+   Task Status Styles
+   ================================================ */
+
+/* Pending Task - Sad/Waiting Look */
+.task-item.pending {
+    background: linear-gradient(135deg, #FFFBEB, #FEF3C7);
+    border-color: #FCD34D;
+}
+
+.task-item.pending .task-text {
+    color: var(--text-primary);
+}
+
+/* Completed Task - Success Look */
+.task-item.completed {
+    background: linear-gradient(135deg, #ECFDF5, #D1FAE5);
+    border: 2px solid var(--accent);
+    opacity: 0.9;
+}
+
+.task-item.completed .task-text {
+    text-decoration: line-through;
+    color: var(--text-secondary);
+}
+
+/* Completed task badge */
+.task-completed-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    background: var(--accent);
+    color: white;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* Pending task indicator */
+.task-pending-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    background: #FEF3C7;
+    color: #92400E;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* ================================================
+   Task Left Section (Checkbox + Content)
+   ================================================ */
+.task-left {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    flex: 1;
+}
+
+/* Checkbox */
+.checkbox {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    border: 2px solid var(--border);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+    margin-top: 2px;
+}
+
+.checkbox:hover {
+    border-color: var(--primary);
+    transform: scale(1.15);
+}
+
+/* Pending checkbox - empty yellow */
+.task-item.pending .checkbox {
+    border-color: var(--warning);
+}
+
+.task-item.pending .checkbox:hover {
+    border-color: var(--warning);
+    background: rgba(245, 158, 11, 0.1);
+}
+
+/* Completed checkbox - green */
+.checkbox.checked {
+    background: var(--accent);
+    border-color: var(--accent);
+    animation: bounce 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes bounce {
+    0% { transform: scale(1); }
+    30% { transform: scale(1.3); }
+    60% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+.checkbox.checked svg {
+    color: white;
+}
+
+/* ================================================
+   Task Content Section
+   ================================================ */
+.task-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.task-header-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.task-text {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-primary);
+    transition: all 0.2s ease;
+    line-height: 1.4;
+}
+
+/* Status Emoji - Pending */
+.task-status-emoji {
+    font-size: 18px;
+    animation: pendingShake 2s ease-in-out infinite;
+}
+
+@keyframes pendingShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-2px); }
+    75% { transform: translateX(2px); }
+}
+
+/* Status Emoji - Completed (celebration) */
+.task-celebration-emoji {
+    font-size: 20px;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    animation: celebratePop 0.6s ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes celebratePop {
+    0% { 
+        opacity: 0;
+        transform: scale(0) translateY(10px);
+    }
+    50% { 
+        opacity: 1;
+        transform: scale(1.3) translateY(-10px);
+    }
+    100% { 
+        opacity: 0;
+        transform: scale(1) translateY(-30px);
+    }
+}
+
+/* ================================================
+   Labels
+   ================================================ */
+.task-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+}
+
+.task-label.important {
+    background: var(--label-important);
+}
+
+.task-label.personal {
+    background: var(--label-personal);
+}
+
+.task-label.daily {
+    background: var(--label-daily);
+}
+
+.task-label.target {
+    background: var(--label-target);
+}
+
+/* ================================================
+   Task Meta Info (Dates/Times)
+   ================================================ */
+.task-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.task-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.task-meta-row svg {
+    width: 14px;
+    height: 14px;
+    opacity: 0.7;
+}
+
+/* Created time */
+.task-meta-row.created {
+    color: var(--text-secondary);
+}
+
+/* Finish/Deadline time */
+.task-meta-row.finish-by {
+    color: var(--warning);
+    font-weight: 500;
+}
+
+/* Completed time */
+.task-meta-row.completed-time {
+    color: var(--accent);
+    font-weight: 500;
+}
+
+/* ================================================
+   Task Actions (Buttons)
+   ================================================ */
+.task-actions {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+/* Complete Button */
+.complete-btn {
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.complete-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+}
+
+.complete-btn.completed {
+    background: var(--text-muted);
+}
+
+/* Delete Button */
+.delete-btn {
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+    opacity: 0.4;
+}
+
+.delete-btn:hover {
+    background: #FEE2E2;
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.delete-btn:hover svg {
+    color: var(--danger);
+}
+
+.delete-btn svg {
+    color: var(--text-secondary);
+}
+
+/* ================================================
+   Empty State
+   ================================================ */
+.empty-state {
+    text-align: center;
+    padding: 56px 24px;
+    color: var(--text-secondary);
+}
+
+.empty-state svg {
+    width: 88px;
+    height: 88px;
+    margin-bottom: 20px;
+    opacity: 0.35;
+}
+
+.empty-state h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+}
+
+.empty-state p {
+    font-size: 14px;
+}
+
+/* Filter Empty State */
+.empty-state.filtered {
+    padding: 32px 20px;
+}
+
+.empty-state.filtered svg {
+    width: 56px;
+    height: 56px;
+}
+
+/* ================================================
+   Splash Screen Styles
+   ================================================ */
+.splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1E293B 0%, #3B82F6 50%, #1E293B 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.splash-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.splash-content {
+    text-align: center;
+    color: white;
+    animation: splashFadeIn 0.8s ease-out;
+}
+
+@keyframes splashFadeIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.splash-logo {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    margin: 0 auto 30px;
+}
+
+.splash-icon {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(145deg, #3B82F6, #2563EB);
+    border-radius: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 72px;
+    font-weight: 700;
+    color: white;
+    animation: logoFloat 3s ease-in-out infinite;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 80px rgba(59, 130, 246, 0.5);
+}
+
+@keyframes logoFloat {
+    0%, 100% { transform: translateY(0) rotateY(0deg); }
+    50% { transform: translateY(-15px) rotateY(180deg); }
+}
+
+.splash-check {
+    animation: checkPop 0.5s ease-out 0.5s both;
+}
+
+@keyframes checkPop {
+    0% { transform: scale(0) rotate(-45deg); }
+    50% { transform: scale(1.3) rotate(10deg); }
+    100% { transform: scale(1) rotate(0deg); }
+}
+
+.splash-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.6) 0%, transparent 70%);
+    animation: glowPulse 2s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+    0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+}
+
+.splash-particles span {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: rgba(59, 130, 246, 0.8);
+    border-radius: 50%;
+    animation: particleFloat 3s ease-in-out infinite;
+}
+
+.splash-particles span:nth-child(1) { top: 10%; left: 10%; }
+.splash-particles span:nth-child(2) { top: 20%; right: 15%; animation-delay: 0.3s; }
+.splash-particles span:nth-child(3) { bottom: 25%; left: 5%; animation-delay: 0.6s; }
+.splash-particles span:nth-child(4) { bottom: 15%; right: 10%; animation-delay: 0.9s; }
+.splash-particles span:nth-child(5) { top: 40%; left: 0%; animation-delay: 1.2s; }
+.splash-particles span:nth-child(6) { top: 35%; right: 5%; animation-delay: 1.5s; }
+.splash-particles span:nth-child(7) { bottom: 40%; left: 10%; animation-delay: 1.8s; }
+.splash-particles span:nth-child(8) { bottom: 35%; right: 0%; animation-delay: 2.1s; }
+.splash-particles span:nth-child(9) { top: 50%; left: 15%; animation-delay: 2.4s; }
+.splash-particles span:nth-child(10) { top: 55%; right: 20%; animation-delay: 2.7s; }
+
+@keyframes particleFloat {
+    0%, 100% { transform: translateY(0) scale(1); opacity: 0.8; }
+    50% { transform: translateY(-30px) scale(1.5); opacity: 0.3; }
+}
+
+.splash-title {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.splash-quote {
+    font-size: 18px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 400px;
+    margin: 0 auto 30px;
+    line-height: 1.6;
+    font-style: italic;
+}
+
+.splash-progress {
+    width: 200px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.splash-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #10B981, #3B82F6, #10B981);
+    border-radius: 2px;
+    width: 0%;
+    animation: progressFill 2s ease-in-out forwards;
+    background-size: 200% 100%;
+    animation: progressFill 2s ease-in-out forwards, shimmer 1.5s linear infinite;
+}
+
+@keyframes progressFill {
+    from { width: 0%; }
+    to { width: 100%; }
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+/* ================================================
+   Responsive Styles
+   ================================================ */
+@media (max-width: 560px) {
+    .container {
+        padding: 24px;
+        border-radius: 20px;
+    }
+
+    .header h1 {
+        font-size: 26px;
+    }
+
+    .input-row {
+        flex-direction: column;
+    }
+
+    .add-btn {
+        width: 100%;
+    }
+
+    .task-item {
+        padding: 14px;
+        flex-wrap: wrap;
+    }
+
+    .task-text {
+        font-size: 15px;
+    }
+
+    .filters-section {
+        padding: 12px;
+    }
+
+    .filter-row {
+        gap: 6px;
+    }
+
+    .filter-btn {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+}
