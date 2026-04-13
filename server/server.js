@@ -12,14 +12,15 @@ const cors = require('cors');
 const { connectDB, getAllTasks, createTask, updateTask, deleteTask, findTaskById } = require('./db');
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 
 // ========================================
 // Middleware
 // ========================================
 
-app.use(cors());
+app.use(cors({ origin: '*' }));
 app.use(express.json());
+app.use(express.static('../'));
 
 // Request logging
 app.use((req, res, next) => {
@@ -37,6 +38,11 @@ app.get('/api/test', (req, res) => {
         status: 'success',
         message: 'Server is working!'
     });
+});
+
+// Serve frontend
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/../index.html');
 });
 
 // Root route

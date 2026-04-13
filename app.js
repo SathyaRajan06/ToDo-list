@@ -76,7 +76,7 @@ function showToast(message, type = 'success') {
    ================================================ */
 
 // Backend API URL
-const API_URL = 'http://localhost:3001/tasks';
+const API_URL = 'http://localhost:3000/tasks';
 
 /* ================================================
    Data Collections
@@ -223,16 +223,18 @@ function initSplashScreen() {
 async function loadTasks() {
     try {
         const response = await fetch(API_URL);
+        
+        if (!response.ok) throw new Error('Server error');
+        
         const result = await response.json();
         
         if (result.status === 'success') {
             tasks = result.data;
         } else {
             tasks = [];
-            console.error('Failed to load tasks:', result.message);
         }
     } catch (error) {
-        console.error('Error loading tasks:', error);
+        console.log('Server not running or error:', error.message);
         tasks = [];
     }
 }
