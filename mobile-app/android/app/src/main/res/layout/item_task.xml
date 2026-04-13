@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardTask"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    app:cardBackgroundColor="@color/card_background"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Top Row: Checkbox + Title + Status Emoji -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <!-- Checkbox -->
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/checkboxComplete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/accent"
+                android:contentDescription="@string/cd_task_checkbox" />
+
+            <!-- Title -->
+            <TextView
+                android:id="@+id/textTaskTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                tools:text="Complete my homework" />
+
+            <!-- Status Emoji -->
+            <TextView
+                android:id="@+id/emojiStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:visibility="gone"
+                tools:text="😔"
+                tools:visibility="visible" />
+
+        </LinearLayout>
+
+        <!-- Label Chip -->
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:visibility="gone"
+            app:chipCornerRadius="20dp"
+            tools:text="Important"
+            tools:visibility="visible" />
+
+        <!-- Created Date -->
+        <TextView
+            android:id="@+id/textCreatedDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="8dp"
+            android:drawablePadding="4dp"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            app:drawableStartCompat="@drawable/ic_time"
+            app:drawableTint="@color/text_hint"
+            tools:text="Created: 13 Apr 2026 at 10:30 AM" />
+
+        <!-- Finish Date -->
+        <TextView
+            android:id="@+id/textFinishDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="4dp"
+            android:drawablePadding="4dp"
+            android:textColor="@color/warning"
+            android:textSize="12sp"
+            android:visibility="gone"
+            app:drawableStartCompat="@drawable/ic_calendar"
+            app:drawableTint="@color/warning"
+            tools:text="Finish by: 14 Apr 2026 at 6:00 PM"
+            tools:visibility="visible" />
+
+        <!-- Completed Date -->
+        <TextView
+            android:id="@+id/textCompletedDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="4dp"
+            android:drawablePadding="4dp"
+            android:textColor="@color/accent"
+            android:textSize="12sp"
+            android:visibility="gone"
+            app:drawableStartCompat="@drawable/ic_check"
+            app:drawableTint="@color/accent"
+            tools:text="Completed: 13 Apr 2026 at 5:00 PM"
+            tools:visibility="visible" />
+
+        <!-- Action Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+            <!-- Complete Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnComplete"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="@string/action_complete"
+                android:textSize="12sp"
+                app:backgroundTint="@color/accent"
+                app:cornerRadius="8dp" />
+
+            <Space
+                android:layout_width="8dp"
+                android:layout_height="1dp" />
+
+            <!-- Edit Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnEdit"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="Edit"
+                android:textSize="12sp"
+                app:cornerRadius="8dp"
+                app:strokeColor="@color/primary" />
+
+            <Space
+                android:layout_width="8dp"
+                android:layout_height="1dp" />
+
+            <!-- Delete Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnDelete"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="@string/action_delete_task"
+                android:textColor="@color/danger"
+                android:textSize="12sp"
+                app:cornerRadius="8dp"
+                app:strokeColor="@color/danger" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

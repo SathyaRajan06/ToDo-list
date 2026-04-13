@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">My To-Do</string>
+    
+    <!-- Navigation -->
+    <string name="nav_home">Tasks</string>
+    <string name="nav_add">Add</string>
+    <string name="nav_settings">Settings</string>
+    
+    <!-- Task Actions -->
+    <string name="action_add_task">Add Task</string>
+    <string name="action_edit_task">Edit Task</string>
+    <string name="action_delete_task">Delete</string>
+    <string name="action_complete">Complete</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_save">Save</string>
+    
+    <!-- Task Status -->
+    <string name="status_pending">Pending</string>
+    <string name="status_completed">Completed</string>
+    <string name="status_all">All</string>
+    
+    <!-- Labels -->
+    <string name="label_important">Important</string>
+    <string name="label_personal">Personal</string>
+    <string name="label_daily">Daily</string>
+    <string name="label_target">Target</string>
+    <string name="label_none">No Label</string>
+    
+    <!-- Task Info -->
+    <string name="info_created">Created</string>
+    <string name="info_finish_by">Finish by</string>
+    <string name="info_completed">Completed</string>
+    
+    <!-- Empty States -->
+    <string name="empty_tasks">No tasks yet</string>
+    <string name="empty_tasks_message">Add your first task above!</string>
+    <string name="empty_no_results">No matching tasks</string>
+    <string name="empty_no_results_message">Try changing your filters</string>
+    
+    <!-- Hints -->
+    <string name="hint_task_title">What do you need to do?</string>
+    <string name="hint_task_label">Select label (optional)</string>
+    <string name="hint_finish_date">Finish date</string>
+    <string name="hint_finish_time">Finish time</string>
+    
+    <!-- Messages -->
+    <string name="message_task_added">Task added!</string>
+    <string name="message_task_updated">Task updated!</string>
+    <string name="message_task_deleted">Task deleted!</string>
+    <string name="message_task_completed">Task completed! 🎉</string>
+    <string name="message_error_load">Unable to load tasks</string>
+    <string name="message_error_save">Unable to save task</string>
+    <string name="message_loading">Loading…</string>
+    
+    <!-- Filters -->
+    <string name="filter_all">All</string>
+    <string name="filter_pending">Pending</string>
+    <string name="filter_completed">Done</string>
+    
+    <!-- Content Descriptions (Accessibility) -->
+    <string name="cd_add_task">Add new task button</string>
+    <string name="cd_complete_task">Mark task as complete</string>
+    <string name="cd_edit_task">Edit task</string>
+    <string name="cd_delete_task">Delete task</string>
+    <string name="cd_task_checkbox">Task completion checkbox</string>
+</resources>

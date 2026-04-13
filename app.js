@@ -9,6 +9,7 @@
  * - Emoji reactions on completion
  * - Filters & sort
  * - LocalStorage persistence
+ * - Mobile-friendly responsive behavior
  */
 
 /* ================================================
@@ -75,7 +76,9 @@ function showToast(message, type = 'success') {
    API Configuration
    ================================================ */
 
-// Backend API URL
+// Backend API URL - Update this to your deployed URL
+// Local: 'http://localhost:3000/tasks'
+// Production: 'https://your-app.onrender.com/tasks'
 const API_URL = 'http://localhost:3000/tasks';
 
 /* ================================================
@@ -125,6 +128,7 @@ let currentSortOrder = 'newest';
 
 // Initialize the app
 async function init() {
+    setupMobileOptimizations();
     await loadTasks();
     setupEventListeners();
     initSplashScreen();
@@ -135,6 +139,45 @@ async function init() {
     tomorrow.setDate(tomorrow.getDate() + 1);
     finishDate.valueAsDate = tomorrow;
     finishTime.value = "17:00";
+}
+
+// Mobile-specific optimizations
+function setupMobileOptimizations() {
+    // Prevent input zoom on iOS
+    const inputs = document.querySelectorAll('input, select');
+    inputs.forEach(input => {
+        input.addEventListener('focus', () => {
+            const viewport = document.querySelector('meta[name="viewport"]');
+            if (viewport) {
+                viewport.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no');
+            }
+        });
+        
+        input.addEventListener('blur', () => {
+            const viewport = document.querySelector('meta[name="viewport"]');
+            if (viewport) {
+                viewport.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no');
+            }
+            // Reset scroll position
+            window.scrollTo(0, 0);
+        });
+    });
+
+    // Handle orientation change
+    window.addEventListener('orientationchange', () => {
+        setTimeout(() => {
+            window.scrollTo(0, 0);
+        }, 100);
+    });
+
+    // Handle resize
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            window.scrollTo(0, 0);
+        }, 100);
+    });
 }
 
 // Event Listeners Setup

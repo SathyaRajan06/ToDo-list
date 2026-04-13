@@ -1,36 +1,62 @@
-# Deploy to GitHub Pages (Free)
+# Deploy to Production
 
-## Option 1: GitHub Pages
+## Quick Deploy: Render.com (Free Tier)
 
-1. Go to your GitHub repo: https://github.com/SathyaRajan06/ToDo-list
-2. Settings → Pages
-3. Source: Select "Deploy from a branch"
-4. Branch: "main" → "/ (root)"
-5. Save
+### Option 1: Deploy Full Stack (Frontend + Backend)
 
-Your site will be at: https://SathyaRajan06.github.io/ToDo-list
+1. **Push to GitHub**
+   ```bash
+   git add .
+   git commit -m "Ready for deployment"
+   git push origin main
+   ```
 
-## Option 2: Netlify (Easier)
+2. **Create Render Account**
+   - Go to https://render.com
+   - Sign up with GitHub
 
-1. Go to https://netlify.com
-2. Drag and drop your `index.html` folder
-3. Done!
+3. **Create Web Service**
+   - Click "New" → "Web Service"
+   - Connect your GitHub repo
+   - Build Command: `npm install`
+   - Start Command: `cd server && npm start`
+   - Plan: Free
 
-Your site will be live instantly!
+4. **Environment Variables** (optional)
+   - `PORT`: 3000
+   - `MONGODB_URI`: (optional) - leave empty for in-memory storage
 
-## Option 3: Vercel
+5. **Deploy!**
+   Your app will be live at `https://your-app.onrender.com`
 
-1. Go to https://vercel.com
-2. Import your GitHub repo
-3. Deploy!
+### Option 2: Deploy Backend Only (API)
 
-## Update API URL
+1. Same steps as above, but point to `server/` folder
+2. Frontend can be deployed separately to GitHub Pages/Netlify/Vercel
 
-Before deploying, update `app.js` to use the backend:
+## Local Development
 
-```javascript
-// For local: http://localhost:3001/tasks
-// For deployed: Point to a deployed backend
+```bash
+cd server
+npm install
+npm start
 ```
 
-**Note:** The frontend needs a backend API to work. The backend must also be deployed (Render.com offers free tier).
+Server runs at http://localhost:3000
+
+## API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | /tasks | Get all tasks |
+| POST | /tasks | Create task |
+| PUT | /tasks/:id | Update task |
+| DELETE | /tasks/:id | Delete task |
+
+## Update Frontend API URL
+
+In `app.js`, update the API_URL to point to your deployed backend:
+
+```javascript
+const API_URL = 'https://your-app.onrender.com/tasks';
+```

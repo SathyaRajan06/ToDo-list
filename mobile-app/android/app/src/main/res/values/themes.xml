@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base App Theme -->
+    <style name="Theme.MyTodoApp" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="android:colorBackground">@color/background</item>
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:statusBarColor">@color/primary</item>
+        <item name="android:navigationBarColor">@color/surface</item>
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+    
+    <!-- Splash Theme -->
+    <style name="Theme.MyTodoApp.Splash" parent="Theme.MyTodoApp">
+        <item name="android:windowBackground">@color/splash_background</item>
+        <item name="android:statusBarColor">@color/splash_background</item>
+    </style>
+    
+    <!-- Task Card Styles -->
+    <style name="TaskCard" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardBackgroundColor">@color/card_background</item>
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">2dp</item>
+    </style>
+    
+    <style name="TaskCard.Pending" parent="TaskCard">
+        <item name="strokeColor">@color/task_pending_border</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+    
+    <style name="TaskCard.Completed" parent="TaskCard">
+        <item name="strokeColor">@color/task_completed_border</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+    
+    <!-- Button Styles -->
+    <style name="PrimaryButton" parent="Widget.Material3.Button">
+        <item name="android:textColor">@color/white</item>
+        <item name="backgroundTint">@color/primary</item>
+        <item name="cornerRadius">12dp</item>
+    </style>
+    
+    <style name="SuccessButton" parent="Widget.Material3.Button">
+        <item name="android:textColor">@color/white</item>
+        <item name="backgroundTint">@color/accent</item>
+        <item name="cornerRadius">12dp</item>
+    </style>
+    
+    <style name="OutlineButton" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="strokeColor">@color/primary</item>
+        <item name="android:textColor">@color/primary</item>
+        <item name="cornerRadius">12dp</item>
+    </style>
+    
+    <!-- Text Styles -->
+    <style name="TextAppearance.Title" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+    
+    <style name="TextAppearance.Subtitle" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    
+    <style name="TextAppearance.Body" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    
+    <style name="TextAppearance.Caption" parent="TextAppearance.Material3.BodySmall">
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+    
+    <!-- Chip Styles -->
+    <style name="LabelChip" parent="Widget.Material3.Chip.Suggestion">
+        <item name="chipCornerRadius">20dp</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+    
+    <style name="LabelChip.Important" parent="LabelChip">
+        <item name="chipBackgroundColor">@color/label_important</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    
+    <style name="LabelChip.Personal" parent="LabelChip">
+        <item name="chipBackgroundColor">@color/label_personal</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    
+    <style name="LabelChip.Daily" parent="LabelChip">
+        <item name="chipBackgroundColor">@color/label_daily</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    
+    <style name="LabelChip.Target" parent="LabelChip">
+        <item name="chipBackgroundColor">@color/label_target</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    
+    <!-- Bottom Sheet Style -->
+    <style name="BottomSheetDialog" parent="Theme.Material3.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheet</item>
+    </style>
+    
+    <style name="BottomSheet" parent="Widget.Material3.BottomSheet">
+        <item name="shapeAppearance">@style/ShapeAppearance.BottomSheet</item>
+    </style>
+    
+    <style name="ShapeAppearance.BottomSheet" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">24dp</item>
+        <item name="cornerSizeTopRight">24dp</item>
+    </style>
+    
+    <!-- FAB Style -->
+    <style name="FabStyle" parent="Widget.Material3.FloatingActionButton.Primary">
+        <item name="backgroundTint">@color/primary</item>
+        <item name="tint">@color/white</item>
+    </style>
+</resources>

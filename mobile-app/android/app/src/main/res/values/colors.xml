@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Colors -->
+    <color name="primary">#3B82F6</color>
+    <color name="primary_dark">#2563EB</color>
+    <color name="primary_light">#EFF6FF</color>
+    
+    <!-- Accent Colors -->
+    <color name="accent">#10B981</color>
+    <color name="accent_dark">#059669</color>
+    
+    <!-- Status Colors -->
+    <color name="success">#10B981</color>
+    <color name="warning">#F59E0B</color>
+    <color name="danger">#EF4444</color>
+    
+    <!-- Label Colors -->
+    <color name="label_important">#EF4444</color>
+    <color name="label_personal">#3B82F6</color>
+    <color name="label_daily">#10B981</color>
+    <color name="label_target">#8B5CF6</color>
+    
+    <!-- Background Colors -->
+    <color name="background">#F8FAFC</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="card_background">#FFFFFF</color>
+    
+    <!-- Text Colors -->
+    <color name="text_primary">#1E293B</color>
+    <color name="text_secondary">#64748B</color>
+    <color name="text_hint">#94A3B8</color>
+    
+    <!-- Task Status -->
+    <color name="task_pending_background">#FFFBEB</color>
+    <color name="task_pending_border">#FCD34D</color>
+    <color name="task_completed_background">#ECFDF5</color>
+    <color name="task_completed_border">#10B981</color>
+    
+    <!-- Other -->
+    <color name="divider">#E2E8F0</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="splash_background">#3B82F6</color>
+</resources>

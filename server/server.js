@@ -3,12 +3,12 @@
  * My To-Do List - Backend Server
  * ========================================
  * 
- * Express server with MongoDB and Mongoose.
- * Uses in-memory storage if MongoDB is not available.
+ * Express server with MongoDB (optional) and in-memory fallback.
  */
 
 const express = require('express');
 const cors = require('cors');
+require('dotenv').config();
 const { connectDB, getAllTasks, createTask, updateTask, deleteTask, findTaskById } = require('./db');
 
 const app = express();
@@ -40,28 +40,23 @@ app.get('/api/test', (req, res) => {
     });
 });
 
-// Serve frontend
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/../index.html');
-});
-
-// Root route
-app.get('/', (req, res) => {
+// API info route
+app.get('/api', (req, res) => {
     res.json({
         name: 'My To-Do List API',
         version: '1.0.0',
         message: 'Welcome to My To-Do List API!',
         endpoints: {
-            GET_tasks: 'http://localhost:3001/tasks',
-            POST_tasks: 'http://localhost:3001/tasks'
+            GET_tasks: 'http://localhost:3000/tasks',
+            POST_tasks: 'http://localhost:3000/tasks'
         }
     });
 });
 
 // GET /tasks - Get all tasks
-app.get('/tasks', async (req, res) => {
+app.get('/tasks', (req, res) => {
     try {
-        const tasks = await getAllTasks();
+        const tasks = getAllTasks();
         res.json({
             status: 'success',
             count: tasks.length,
@@ -73,7 +68,7 @@ app.get('/tasks', async (req, res) => {
 });
 
 // POST /tasks - Create task
-app.post('/tasks', async (req, res) => {
+app.post('/tasks', (req, res) => {
     try {
         const { title, label } = req.body;
         
@@ -83,7 +78,7 @@ app.post('/tasks', async (req, res) => {
         
         const now = new Date();
         
-        const newTask = await createTask({
+        const newTask = createTask({
             title: title.trim(),
             label: label || null,
             createdAt: {
@@ -106,12 +101,12 @@ app.post('/tasks', async (req, res) => {
 });
 
 // PUT /tasks/:id - Update task
-app.put('/tasks/:id', async (req, res) => {
+app.put('/tasks/:id', (req, res) => {
     try {
         const { id } = req.params;
         const { title, label, completed } = req.body;
         
-        const task = await findTaskById(id);
+        const task = findTaskById(id);
         
         if (!task) {
             return res.status(404).json({ status: 'error', message: 'Task not found' });
@@ -134,7 +129,7 @@ app.put('/tasks/:id', async (req, res) => {
             }
         }
         
-        const updated = await updateTask(id, updates);
+        const updated = updateTask(id, updates);
         
         res.json({ status: 'success', message: 'Task updated', data: updated });
     } catch (error) {
@@ -143,11 +138,11 @@ app.put('/tasks/:id', async (req, res) => {
 });
 
 // DELETE /tasks/:id - Delete task
-app.delete('/tasks/:id', async (req, res) => {
+app.delete('/tasks/:id', (req, res) => {
     try {
         const { id } = req.params;
         
-        const deleted = await deleteTask(id);
+        const deleted = deleteTask(id);
         
         if (!deleted) {
             return res.status(404).json({ status: 'error', message: 'Task not found' });
@@ -165,7 +160,7 @@ app.delete('/tasks/:id', async (req, res) => {
 
 async function startServer() {
     await connectDB();
-    
+
     app.listen(PORT, () => {
         console.log(`
 ==========================================
@@ -173,7 +168,7 @@ async function startServer() {
 ==========================================
   Server: http://localhost:${PORT}
   
-  Storage: In-memory (no MongoDB needed!)
+  Storage: In-Memory (or MongoDB if configured)
   
   Routes:
     GET    /tasks        - Get all tasks
